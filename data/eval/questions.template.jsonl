@@ -1,0 +1,4 @@
+{"id": "q001", "categorie": "factuelle", "question": "À REMPLIR : question dont la réponse figure dans un seul article", "reference_answer": "À REMPLIR", "sources": [{"doc_id": "loi_09_08", "article": 1}]}
+{"id": "q002", "categorie": "synthese", "question": "À REMPLIR : question nécessitant plusieurs articles", "reference_answer": "À REMPLIR", "sources": [{"doc_id": "loi_09_08", "article": 1}, {"doc_id": "loi_09_08", "article": 2}]}
+{"id": "q003", "categorie": "conformite", "question": "À REMPLIR : un document respecte-t-il telle exigence ?", "reference_answer": "À REMPLIR", "sources": [{"doc_id": "loi_09_08", "article": 1}]}
+{"id": "q004", "categorie": "sans_reponse", "question": "À REMPLIR : question hors corpus (le système doit refuser)", "reference_answer": "", "sources": []}

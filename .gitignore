@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+data/raw/
+data/index/
+data/eval/resultats.jsonl
+.pytest_cache/

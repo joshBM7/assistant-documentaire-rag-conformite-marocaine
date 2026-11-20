@@ -1,0 +1,8 @@
+doc_id,titre,type,source,url,date_publication,statut,langue,domaine,licence
+loi_09_08,Loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel,loi,Adala (ministère de la Justice),,2009-03-05,en vigueur,fr,donnees_personnelles,
+loi_31_13,Loi 31-13 relative au droit d'accès à l'information (dahir 1-18-15),loi,Adala (ministère de la Justice),,2018-03-12,en vigueur,fr,acces_information,
+loi_55_19,Loi 55-19 relative à la simplification des procédures et formalités administratives,loi,Adala (ministère de la Justice),,,en vigueur,fr,simplification_administrative,
+loi_43_20,Loi 43-20 relative aux services de confiance pour les transactions électroniques,loi,Adala (ministère de la Justice),,,en vigueur,fr,confiance_numerique,
+loi_05_20,Loi 05-20 relative à la cybersécurité,loi,Adala (ministère de la Justice),,,en vigueur,fr,cybersecurite,
+decret_2_21_406,Décret 2-21-406 pris pour l'application de la loi 05-20 relative à la cybersécurité,decret,Adala (ministère de la Justice),,,en vigueur,fr,cybersecurite,
+decret_2_22_431,Décret 2-22-431 relatif aux marchés publics,decret,FNBTP (copie du Bulletin officiel),,2023-03-09,en vigueur,fr,marches_publics,
