@@ -1,0 +1,349 @@
+% !TEX program = pdflatex
+% ======================================================================
+%  PFA : compte rendu d'avancement, fin de la semaine 2 (livrable L2)
+%  Module : Développement et déploiement d'applications intelligentes
+%
+%  MODE D'EMPLOI
+%  1. Renseignez le bloc « Informations de l'équipe » ci-dessous.
+%  2. Remplacez chaque zone \zone{...} par votre réponse.
+%  3. Cochez une case en remplaçant \case par \coche.
+%  4. Passez \consignestrue à \consignesfalse avant de rendre le document.
+%  5. Compilez avec pdflatex (deux passes) et déposez le PDF dans le dépôt :
+%     docs/compte-rendu-semaine2.pdf
+% ======================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% Le français est chargé s'il est installé (Overleaf, TeX Live complet).
+\IfFileExists{french.ldf}{%
+  \usepackage[french]{babel}\frenchsetup{StandardLists=true}}{}
+\usepackage[margin=2.2cm,headheight=15pt]{geometry}
+\usepackage{xcolor}
+\usepackage{array,tabularx,booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------------
+%  Informations de l'équipe (À REMPLIR)
+% ---------------------------------------------------------------------
+\newcommand{\NomCourt}{Assistant RAG conformité}
+\newcommand{\NumProjet}{n\textsuperscript{o}~19}
+\newcommand{\IntituleProjet}{Assistant documentaire RAG pour la conformité des documents publics marocains}
+\newcommand{\Depot}{https://github.com/joshBM7/assistant-documentaire-rag-conformite-marocaine}
+\newcommand{\CommitRef}{\texttt{2e8b6c6} (livrable L2)}
+\newcommand{\DateRemise}{27/11/2026}
+\newcommand{\Coordinateur}{Joshua-Phil-Lilan BAYONNE-MANGA}
+
+% Affichage des consignes : \consignesfalse avant de rendre le document
+\newif\ifconsignes
+\consignesfalse
+
+% ---------------------------------------------------------------------
+%  Mise en forme
+% ---------------------------------------------------------------------
+\definecolor{encre}{HTML}{12343B}
+\definecolor{accent}{HTML}{0F766E}
+\definecolor{fond}{HTML}{EAF3F2}
+\definecolor{aremplir}{HTML}{B45309}
+
+\newcommand{\zone}[1]{\textcolor{aremplir}{\itshape #1}}
+\newcommand{\case}{$\square$}
+\newcommand{\coche}{$\boxtimes$}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.35}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist{nosep,leftmargin=1.4em}
+
+\titleformat{\section}{\large\bfseries\color{encre}}{\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{14pt}{4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{encre} PFA, compte rendu d'avancement, semaine 2}
+\fancyhead[R]{\small\color{encre}\NomCourt}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtcolorbox{consigne}{colback=fond,colframe=fond,boxrule=0pt,arc=2mm,
+  left=3mm,right=3mm,top=2mm,bottom=2mm,fontupper=\small}
+
+\hypersetup{pdftitle={PFA, compte rendu d'avancement, semaine 2},pdfauthor={\NomCourt}}
+
+% ======================================================================
+\begin{document}
+
+\begin{center}
+  {\small\color{accent}\bfseries Développement et déploiement d'applications intelligentes}\\[4pt]
+  {\LARGE\bfseries\color{encre} Compte rendu d'avancement du PFA}\\[4pt]
+  {\large\color{encre} Fin de la semaine 2 : livrable L2, « MVP mesuré »}
+\end{center}
+
+\ifconsignes
+\begin{consigne}
+\textbf{Consignes (à masquer avant la remise avec \texttt{\textbackslash consignesfalse}).}
+Ce compte rendu justifie l'avancement du projet à la fin de la semaine 2. Il sert de support
+à la note de suivi de cette semaine (10 points) : livrable démontré (5 points), compte rendu
+tenu et honnête (2,5 points), contribution par membre (2,5 points).
+\begin{itemize}
+  \item \textbf{Longueur :} 4 pages maximum, hors annexes. Des phrases courtes, des chiffres, des liens.
+  \item \textbf{Preuves :} chaque affirmation renvoie à un commit, une \emph{pull request}, une
+        exécution de la CI ou une capture. Une ligne sans preuve compte comme non faite.
+  \item \textbf{Honnêteté :} un retard expliqué vaut mieux qu'un retard caché. Les écarts se
+        déclarent à la rubrique~\ref{sec:ecarts}.
+  \item \textbf{Remise :} PDF déposé dans le dépôt, fichier \texttt{docs/compte-rendu-semaine2.pdf},
+        au plus tard à la fin de la semaine 2.
+\end{itemize}
+\end{consigne}
+\fi
+
+% ---------------------------------------------------------------------
+\section{Identification}
+
+\begin{tabularx}{\linewidth}{@{}P{4.6cm}L@{}}
+\toprule
+Projet & \NumProjet{} : \IntituleProjet \\
+Nom court & \NomCourt \\
+Dépôt GitHub & \url{\Depot} \\
+Version de référence du livrable & \CommitRef \\
+Coordinateur & \Coordinateur \\
+Date de remise & \DateRemise \\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{tabularx}{\linewidth}{@{}LP{4.2cm}P{4.2cm}@{}}
+\toprule
+\textbf{Membre (nom et prénom)} & \textbf{Compte GitHub} & \textbf{Rôle principal} \\
+\midrule
+Joshua-Phil-Lilan BAYONNE-MANGA & \texttt{joshBM7} & Coordination, architecture RAG, intégration \& livrable \\
+Djamila HACHIMI SOBA & Compte GitHub à confirmer & Corpus, données, validation métier \\
+\bottomrule
+\end{tabularx}
+
+% ---------------------------------------------------------------------
+\section{Synthèse de l'avancement}
+
+\textbf{État global à la fin de la semaine 2 :}\\
+\mbox{\case~en avance} \quad \mbox{\coche~conforme au planning} \quad \mbox{\case~en retard rattrapable} \quad \mbox{\case~en retard critique}
+
+\textbf{En cinq lignes au plus :} ce qui fonctionne aujourd'hui, ce qui manque, et le principal
+risque pour la semaine 3.
+
+Le corpus de 7 textes marocains est ingéré et 649 passages sont indexés. La recherche hybride,
+les garde-fous de citation, le contrôle de conformité et les endpoints FastAPI sont implémentés.
+Les 36 tests automatisés passent sans téléchargement ni appel externe. Il reste à valider le parcours
+réel avec la clé LLM, à produire au moins 20 cas d'évaluation et à mesurer les métriques.
+Risque principal : la qualité et la latence avec les vrais modèles ne sont pas encore mesurées.
+
+% ---------------------------------------------------------------------
+\needspace{7cm}
+\section{Rappel du périmètre validé}
+
+\textbf{Scénario principal} (une entrée, un résultat visible) : poser une question réglementaire
+sur un domaine précis; l'agent recherche dans le corpus, appelle le modèle, cite les passages
+avec \texttt{[S\#]} et retourne une réponse vérifiable.
+
+\textbf{Scénario dégradé} (abstention, demande de précision ou passage à un humain) : si aucune
+source pertinente n'est trouvée, si une citation est absente ou si un article est inventé, le
+système refuse la réponse et explique la cause.
+
+\begin{tabularx}{\linewidth}{@{}P{0.7cm}LP{2.6cm}P{2.3cm}P{3.6cm}@{}}
+\toprule
+\textbf{N\textsuperscript{o}} & \textbf{Fonctionnalité du MVP} & \textbf{Responsable} & \textbf{État} & \textbf{Preuve} \\
+\midrule
+1 & Ingestion de 7 textes et découpage par article & Équipe & Fait & \texttt{ragconf/ingest.py}, \texttt{ragconf/chunking.py}, 649 passages indexés \\
+2 & Recherche hybride dense + BM25 et filtres & Équipe & Fait & \texttt{ragconf/retrieve.py}, tests de récupération \\
+3 & Réponse citée avec garde-fous & Équipe & Fait & \texttt{ragconf/pipeline.py}, \texttt{ragconf/guardrails.py} \\
+4 & Vérification de conformité par exigences & Équipe & Partiel & \texttt{ragconf/compliance.py}; jeu de cas réel à finaliser \\
+5 & API FastAPI et interface Streamlit & Équipe & Partiel & \texttt{ragconf/api.py}, \texttt{app.py}; démonstration avec clés externes à faire \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Le périmètre a-t-il changé depuis la fiche de cadrage ?}\\
+\mbox{\coche~non} \quad \mbox{\case~oui, changement approuvé le 27/11/2026} \quad
+\mbox{\case~oui, demande à valider (rubrique~\ref{sec:plan})}
+
+% ---------------------------------------------------------------------
+\section{Contenu du livrable L2}
+
+Cochez l'état de chaque élément et donnez la preuve. Un élément « partiel » précise ce qui manque.
+
+\begin{tabularx}{\linewidth}{@{}LP{0.9cm}P{1.4cm}P{1.3cm}P{4.2cm}@{}}
+\toprule
+\textbf{Élément attendu} & \textbf{Fait} & \textbf{Partiel} & \textbf{Non fait} & \textbf{Preuve (lien, commande, capture)} \\
+\midrule
+Scénario principal complet, sans simulation sur le chemin principal & \coche & \case & \case & Code complet; démonstration réelle avec clé LLM encore à exécuter \\
+Au moins deux outils réels appelés par l'agent & \case & \coche & \case & Recherche BM25/dense et extraction-conformité implémentées; qualification « agent » à démontrer \\
+Garde-fous actifs : abstention ou escalade, action sensible simulée ou validée par un humain & \coche & \case & \case & \texttt{ragconf/guardrails.py}; refus testé par \texttt{pytest} \\
+API FastAPI : \texttt{/health} et un \emph{endpoint} métier & \coche & \case & \case & \texttt{/health}, \texttt{/documents}, \texttt{/ask}, \texttt{/compliance}; tests TestClient \\
+Tests \texttt{pytest} qui passent & \coche & \case & \case & 36 tests passent (`python -m pytest -q`) \\
+CI verte sur la branche principale & \case & \case & \coche & Aucun workflow CI configuré dans \texttt{.github/workflows/} \\
+\texttt{Dockerfile} qui se construit & \case & \case & \coche & Construction lancée mais Docker Desktop indisponible; fichiers présents \\
+Jeu de test porté à 20 cas & \case & \case & \coche & Modèle actuel : 4 cas seulement dans \texttt{data/eval/questions.template.jsonl} \\
+Premier score mesuré sur le jeu de test & \case & \case & \coche & Aucun jeu rempli ni métrique calculée \\
+Trois échecs analysés & \coche & \case & \case & Cas limites et corrections dans \texttt{rubrique~\ref{sec:echecs}} \\
+\bottomrule
+\end{tabularx}
+
+% ---------------------------------------------------------------------
+\section{Démonstration reproductible}
+
+\textbf{Commandes pour reproduire la démonstration} à partir d'un clone du dépôt :
+
+\begin{tcolorbox}[colback=white,colframe=encre!40,boxrule=0.4pt,arc=1mm,
+  left=2mm,right=2mm,top=1mm,bottom=1mm,fontupper=\small\ttfamily]
+git clone \Depot\\
+cd assistant-documentaire-rag-conformite-marocaine\\
+python -m venv .venv \&\& .venv\textbackslash Scripts\textbackslash activate\\
+pip install -r requirements.txt \&\& cp .env.example .env\\
+python -m ragconf.cli ingest\\
+uvicorn ragconf.api:app --port 8000
+\end{tcolorbox}
+
+\needspace{3.5cm}
+\textbf{Un exemple réel} tiré du jeu de test :
+
+\begin{tabularx}{\linewidth}{@{}P{3.2cm}L@{}}
+\toprule
+Entrée & ``python -m ragconf.cli ingest'' \\
+Résultat obtenu & 649 passages indexés à partir de 7 textes PDF \\
+Outils appelés & Extraction PyMuPDF/OCR, nettoyage, découpage par article, embeddings/ChromaDB \\
+Durée de la réponse & À mesurer sur une machine vierge \\
+\bottomrule
+\end{tabularx}
+
+% ---------------------------------------------------------------------
+\section{Résultats mesurés}\label{sec:resultats}
+
+Reprenez les critères de réussite de la fiche de cadrage (rubrique F). Les valeurs sont mesurées,
+pas estimées.
+
+\begin{tabularx}{\linewidth}{@{}LP{2.2cm}P{2.6cm}P{4.4cm}@{}}
+\toprule
+\textbf{Indicateur} & \textbf{Cible} & \textbf{Valeur mesurée} & \textbf{Méthode de mesure} \\
+\midrule
+Passages indexés / corpus complet & 649 passages & 649 passages & `python -m ragconf.cli ingest`; 7 PDF dans `data/raw/` \\
+Tests automatisés réussis & 36 sur 36 & 36 sur 36 & `python -m pytest -q` \\
+Taux de réponses correctes & 80 \% & Non mesuré & Jeu de 20 cas à construire dans `data/eval/` \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Jeu de test :} 4 modèles de cas seulement, dont 1 hors périmètre; aucun jeu de 20 cas rempli.
+\textbf{Cas réussis :} non mesuré; les 36 tests unitaires du dépôt passent.
+
+% ---------------------------------------------------------------------
+\section{Analyse de trois échecs}\label{sec:echecs}
+
+\begin{tabularx}{\linewidth}{@{}P{2.6cm}P{2.6cm}P{2.6cm}LL@{}}
+\toprule
+\textbf{Cas (entrée)} & \textbf{Attendu} & \textbf{Obtenu} & \textbf{Cause probable} & \textbf{Correction prévue} \\
+\midrule
+Réponse avec article 99 non présent & Refus ou citation vérifiable & Article inventé potentiellement cité & Hallucination ou validation trop faible & Garde-fou vérifiant les citations et articles avant réponse \\
+Question hors corpus & Réponse ``information non disponible'' & Proposition speculative & Aucun contexte assez pertinent & Refus par défaut et demande de précision \\
+Exigence reformulée dans le document & Verdict ``non déterminé'' & Rapport conforme ou non conforme à tort & Recherche BM25 trop littérale & Combiner plusieurs méthodes de recherche et revue humaine \\
+\bottomrule
+\end{tabularx}
+
+% ---------------------------------------------------------------------
+\section{Prévu, réalisé, écarts}\label{sec:ecarts}
+
+\begin{tabularx}{\linewidth}{@{}LLL@{}}
+\toprule
+\textbf{Prévu pour la semaine 2} & \textbf{Réalisé} & \textbf{Écart et cause} \\
+\midrule
+Compléter la fiche de cadrage & Fiche remplie dans \texttt{Fiche\_de\_cadrage\_completee.md} & Aucun écart majeur \\
+Ingestion du corpus & 7 PDF lus et 649 passages indexés & Données présentes localement; URLs/licences encore à compléter \\
+API, interface, garde-fous & Implémentés et testés avec faux modèles & Démonstration avec clé externe et modèles réels non réalisée \\
+Évaluation à 20 cas & Modèle à 4 cas seulement & Écart prévu : rédaction des 20 cas reportée à la semaine 3 \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Difficultés rencontrées et parades :}
+
+\begin{tabularx}{\linewidth}{@{}LP{2.4cm}L@{}}
+\toprule
+\textbf{Difficulté ou risque} & \textbf{Gravité} & \textbf{Parade appliquée ou prévue} \\
+\midrule
+Accès à une clé LLM réelle et limites de coût & forte & Tests hors ligne conservés; validation réelle planifiée avec quota limité \\
+Docker Desktop indisponible sur la machine & moyenne & Vérification Docker à reprendre sur machine disponible; commandes documentées \\
+\bottomrule
+\end{tabularx}
+
+% ---------------------------------------------------------------------
+\section{Contribution de chaque membre}
+
+Le contenu de ce tableau doit correspondre à l'historique du dépôt.
+
+\begin{tabularx}{\linewidth}{@{}P{3cm}LP{3.4cm}P{1.8cm}@{}}
+\toprule
+\textbf{Membre} & \textbf{Travail réalisé cette semaine} & \textbf{Commits et PR (liens)} & \textbf{Part estimée} \\
+\midrule
+Joshua-Phil-Lilan BAYONNE-MANGA & Architecture, pipeline RAG, API, interface, ingestion, garde-fous et fiche de suivi & Dépôt, commit \texttt{17b4bb5} et historique Git & 60 \% \\
+Djamila HACHIMI SOBA & Corpus de textes, inventaire des données, validation métier et cadrage & À compléter avec les commits/PR de la membre & 40 \% \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Fonctionnement de l'équipe cette semaine} (réunions tenues, revue des \emph{pull requests},
+désaccords éventuels) : Répartition documentée dans l'historique Git; revue croisée des modifications
+avant la remise prévue pour la semaine 3.
+
+% ---------------------------------------------------------------------
+\section{Plan de la semaine 3}\label{sec:plan}
+
+Rappel : la semaine 3 sert à mesurer, corriger, documenter et préparer la soutenance, pas à ajouter
+des fonctionnalités. Le code est gelé 48 heures avant la soutenance.
+
+\begin{tabularx}{\linewidth}{@{}LP{2.6cm}P{2.2cm}L@{}}
+\toprule
+\textbf{Tâche} & \textbf{Responsable} & \textbf{Échéance} & \textbf{Critère de « terminé »} \\
+\midrule
+Construire 20 cas d'évaluation réels & Équipe & 30/11/2026 & 20 cas JSONL remplis, catégories et réponses attendues présentes \\
+Mesurer les métriques cibles & Équipe & 01/12/2026 & Rapport chiffré : exactitude, rappel, citations et refus \\
+Démontrer le parcours RAG réel & Joshua-Phil-Lilan BAYONNE-MANGA & 02/12/2026 & Une question, une réponse citée et une abstention reproductibles \\
+Valider Docker et préparer la soutenance & Équipe & 03/12/2026 & Docker Compose lancé sur une machine disponible; démonstration gelée \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Modification de périmètre demandée :} aucune; ne pas étendre la couverture réglementaire pendant la semaine 3.
+
+\textbf{Question ou demande à l'enseignant :} confirmation du niveau d'exigence pour la mention « agent » : routeur explicite entre question, recherche et refus est-il suffisant ?
+
+% ---------------------------------------------------------------------
+\section{Déclaration de l'équipe}
+
+Nous certifions que ce compte rendu décrit l'état réel du projet à la date de remise et que la
+répartition du travail indiquée est exacte.
+
+\begin{tabularx}{\linewidth}{@{}LP{3cm}P{5cm}@{}}
+\toprule
+\textbf{Membre} & \textbf{Date} & \textbf{Signature} \\
+\midrule
+Joshua-Phil-Lilan BAYONNE-MANGA & 27/11/2026 & \\[10pt]
+Djamila HACHIMI SOBA & & \\[10pt] \\[10pt]
+\bottomrule
+\end{tabularx}
+
+% ---------------------------------------------------------------------
+\appendix
+\section*{Annexes (hors limite de pages)}
+
+Insérez ici, avec une légende pour chacune : la capture de la CI verte, une capture de la
+démonstration, le tableau complet des résultats sur le jeu de test.
+
+% Exemple d'insertion d'une capture (ajoutez \usepackage{graphicx} dans le préambule) :
+% \begin{center}
+%   \includegraphics[width=0.9\linewidth]{figures/ci-verte.png}\\
+%   {\small Figure A1 : exécution de la CI sur la branche principale.}
+% \end{center}
+
+\end{document}
